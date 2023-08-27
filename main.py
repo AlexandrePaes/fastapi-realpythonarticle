@@ -37,8 +37,9 @@ async def create_item(item: Item):
     # return item # v1
     item_dict = item.model_dump()
     # item.tax = float(input('Enter the tax: ')) * .90 / 100
-    item.tax = item.price * 1.05 / 100
+    item.tax = item.price * 0.90 / 100
     if item.tax:
         price_with_tax = item.price + item.tax
-        item_dict.update({"price_with_tax": price_with_tax})
+        f_price_with_tax = f"{f'${price_with_tax:0.2f}'}"
+        item_dict.update({"price_with_tax": f_price_with_tax})
     return item_dict
